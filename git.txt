@@ -1,0 +1,8 @@
+
+git init abc
+cd abc
+ls -al
+git config --global --list
+cp ../1.txt .
+git add .
+git commit -m'do something'

@@ -10,5 +10,6 @@ git cat-file -p 文件唯一标识
 
 123
 000
+123
 
 git checkout -b temp02 temp01

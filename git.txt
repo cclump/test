@@ -13,3 +13,75 @@ git cat-file -p 文件唯一标识
 123
 
 git checkout -b temp02 temp01
+
+wget -P /root/download https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+
+
+[MY-010454] [Server] A temporary password is generated for root@localhost: fw?j>ct?-7rK
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'C2@3AaBc45P6';
+
+ALTER USER 'root'@'82.156.103.133' IDENTIFIED WITH mysql_native_password BY 'C2@3AaBc45P6';
+
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'C2@3AaBc45P6';
+
+82.156.103.133
+
+
+// 查看开机自启动的服务
+chkconfig --list
+
+ 
+chkconfig --list mysqld
+
+
+配置MySQL的开机自动启动
+1、#chkconfig --add mysqld
+2、#chkconfig mysqld on
+3、命令启动/关闭MySQL实例
+service mysqld start/stop
+/etc/init.d/mysqld start/stop
+4、命令关闭MySQL
+mysqladmin -p -u root shutdown
+5、检查mysql是否真正的启动
+(1)查询端口　　
+#netstat -tulpn
+(2)查询进程 
+ps -ef | grep mysqld
+
+service mysqld start
+service mysqld stop
+
+
+
+
+
+
+
+
+
+
+
+[Unit]
+Description=mysql-service
+Documentation=man:mysqld(8)
+After=network.target
+After=syslog.target
+[Install]
+WantedBy=multi-user.target
+ 
+[Service]
+User=mysql
+Group=mysql
+ExecStart=/usr/local/mysql/bin/mysqld --defaults-file=/etc/my.cnf
+LimitNOFILE = 5000
+#Restart=on-failure
+#RestartPreventExitStatus=1
+#PrivateTmp=false
+
+
+
+
+
+ 
